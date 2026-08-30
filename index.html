@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Bonvitek Inovasi Indonesia - Science for Sustainable Innovation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',   // Navy Blue
+                        secondary: '#2E8B57', // Green
+                        accent: '#0EA5E9',    // Sky Blue
+                        light: '#F8FAFC',
+                        dark: '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Manrope', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.05)',
+                        'card': '0 4px 20px -5px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+        }
+        .page-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .page-view.active {
+            display: block;
+            opacity: 1;
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #1E3A8A, #0EA5E9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-link.active {
+            color: #2E8B57; 
+            font-weight: 600;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #2E8B57;
+            border-radius: 2px;
+        }
+        
+        body {
+            background:
+                radial-gradient(circle at 85% 8%, rgba(14,165,233,.08), transparent 26rem),
+                radial-gradient(circle at 10% 45%, rgba(46,139,87,.055), transparent 24rem),
+                #ffffff;
+        }
+        .hero-surface {
+            background:
+                radial-gradient(circle at 80% 20%, rgba(14,165,233,.18), transparent 30rem),
+                radial-gradient(circle at 10% 90%, rgba(46,139,87,.14), transparent 26rem),
+                linear-gradient(135deg, #f8fbff 0%, #ffffff 52%, #f5fbf7 100%);
+        }
+        .section-soft {
+            background:
+                radial-gradient(circle at 15% 10%, rgba(14,165,233,.07), transparent 22rem),
+                radial-gradient(circle at 90% 80%, rgba(46,139,87,.07), transparent 24rem),
+                #f8fafc;
+        }
+        .image-frame {
+            box-shadow: 0 25px 70px -25px rgba(30,58,138,.28);
+        }
+        .service-content .rounded-3xl {
+            border: 1px solid rgba(226,232,240,.8);
+        }
+
+        .bg-dots {
+            background-image: radial-gradient(rgba(30, 58, 138, 0.1) 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+
+        .wa-float {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 60;
+        }
+        .wa-float-button {
+            width: 58px;
+            height: 58px;
+            border-radius: 9999px;
+            background: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 14px 35px rgba(37,211,102,.32);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .wa-float-button:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 18px 40px rgba(37,211,102,.4);
+        }
+        .wa-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            background: #0f172a;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s ease, transform .2s ease;
+        }
+        .wa-float:hover .wa-tooltip {
+            opacity: 1;
+            transform: translateY(-50%) translateX(-2px);
+        }
+        .wa-form-input {
+            transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+        .wa-form-input:focus {
+            outline: none;
+            border-color: #0EA5E9;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(14,165,233,.10);
+        }
+        .form-error {
+            color: #dc2626;
+            font-size: 11px;
+            margin-top: 6px;
+        }
+        @media (max-width: 640px) {
+            .wa-float { right: 16px; bottom: 16px; }
+            .wa-float-button { width: 54px; height: 54px; }
+            .wa-tooltip { display: none; }
+        }
+
+        #page-home .hero-surface {
+            padding-top: 2.5rem !important;
+            padding-bottom: 4rem !important;
+            background:
+                radial-gradient(circle at 78% 12%, rgba(14,165,233,.20), transparent 30rem),
+                radial-gradient(circle at 8% 82%, rgba(46,139,87,.14), transparent 28rem),
+                linear-gradient(135deg, #f1f7ff 0%, #ffffff 48%, #f2faf6 100%);
+        }
+
+        #page-home .hero-surface .lg\:h-\[600px\] {
+            height: 520px !important;
+        }
+        #page-home .hero-surface .xl\:h-\[650px\] {
+            height: 560px !important;
+        }
+        #page-home > section:nth-of-type(2) {
+            padding-top: 3.5rem !important;
+            padding-bottom: 3.5rem !important;
+        }
+        #page-home > section:nth-of-type(3) {
+            padding-top: 4.5rem !important;
+            padding-bottom: 4.5rem !important;
+        }
+
+        #page-about > section:first-child,
+        #page-services > section:first-child,
+        #page-products > section:first-child,
+        #page-industries > section:first-child,
+        #page-contact > section:first-child {
+            padding-top: 5rem !important;
+            padding-bottom: 4.5rem !important;
+        }
+
+        #page-about > section:nth-of-type(2),
+        #page-services > section:nth-of-type(2),
+        #page-products > section:nth-of-type(2),
+        #page-industries > section:nth-of-type(2) {
+            padding-top: 3.5rem !important;
+        }
+
+        #page-contact > section:nth-of-type(2) {
+            padding-top: 1rem !important;
+        }
+
+        @media (max-width: 1023px) {
+            #page-home .hero-surface .lg\:h-\[600px\],
+            #page-home .hero-surface .xl\:h-\[650px\] {
+                height: 440px !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #page-home .hero-surface {
+                padding-top: 1.5rem !important;
+                padding-bottom: 2.5rem !important;
+            }
+            #page-home .hero-surface .lg\:h-\[600px\],
+            #page-home .hero-surface .xl\:h-\[650px\] {
+                height: 340px !important;
+            }
+            #page-about > section:first-child,
+            #page-services > section:first-child,
+            #page-products > section:first-child,
+            #page-industries > section:first-child,
+            #page-contact > section:first-child {
+                padding-top: 4rem !important;
+                padding-bottom: 3.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-dark bg-white antialiased selection:bg-accent selection:text-white pt-20">
+
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-gray-100 shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="router.navigate('home')">
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl">
+                            <i class="fa-solid fa-flask-vial"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-heading font-bold text-xl text-primary leading-tight">BONVITEK</span>
+                            <span class="font-heading font-semibold text-[10px] sm:text-xs text-gray-500 leading-tight">PT. Bonvitek Inovasi Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-8 items-center">
+                    <a href="#home" class="nav-link relative text-gray-600 hover:text-primary transition-colors text-sm font-medium py-1" onclick="router.navigate('home')">Home</a>
+                    <a href="#about" class="nav-link relative text-gray-600 hover:text-primary transition-colors text-sm font-medium py-1" onclick="router.navigate('about')">About</a>
+                    
+                    <a href="#services" class="nav-link relative text-gray-600 hover:text-primary transition-colors text-sm font-medium py-1" onclick="router.navigate('services')">Services</a>
+                    <a href="#products" class="nav-link relative text-gray-600 hover:text-primary transition-colors text-sm font-medium py-1" onclick="router.navigate('products')">Products</a>
+                    
+                    <a href="#industries" class="nav-link text-gray-600 font-medium hover:text-primary transition-colors text-sm py-1" onclick="router.navigate('industries')">Industries</a>
+                    <a href="#contact" class="nav-link text-gray-600 font-medium hover:text-primary transition-colors text-sm py-1" onclick="router.navigate('contact')">Contact</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-100 bg-white">
+                <div class="px-4 py-4 space-y-1">
+                    <a href="#home" onclick="router.navigate('home')" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50">Home</a>
+                    <a href="#about" onclick="router.navigate('about')" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50">About</a>
+                    <a href="#services" onclick="router.navigate('services')" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50">Services</a>
+                    <a href="#products" onclick="router.navigate('products')" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50">Products</a>
+                    <a href="#industries" onclick="router.navigate('industries')" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50">Industries</a>
+                    <a href="#contact" onclick="router.navigate('contact')" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50">Contact</a>
+                    <a href="https://wa.me/628817596934?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="block px-4 py-3 rounded-xl text-sm font-semibold text-white bg-[#25D366] hover:bg-[#1ebe5d]">
+                        <i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!--                 HOME PAGE                  -->
+    <!-- ========================================== -->
+    <div id="page-home" class="page-view active">
+        
+        <section class="relative hero-surface overflow-hidden pb-16 pt-12 lg:pt-20 lg:pb-32">
+            <div class="absolute top-0 right-0 -mr-40 -mt-40 w-96 h-96 rounded-full bg-accent/10 blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 -ml-40 -mb-40 w-96 h-96 rounded-full bg-secondary/10 blur-3xl pointer-events-none"></div>
+            
+            <div class="max-w-7xl xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+                    
+                    <div class="relative z-10 w-full lg:w-1/2 xl:w-5/12">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-100 bg-blue-50/50 mb-6">
+                            <i class="fa-solid fa-flask text-accent text-sm"></i>
+                            <span class="text-[11px] font-bold text-primary tracking-widest uppercase">Scientific Solutions For A Better Future</span>
+                        </div>
+                        
+                        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-primary leading-[1.15]">
+                            Empowering Innovation <br>
+                            Through <span class="text-accent relative inline-block">Science<svg class="absolute w-full h-3 -bottom-1 left-0 text-accent opacity-30" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="none"/></svg></span>
+                        </h1>
+                        
+                        <p class="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-lg">
+                            PT. Bonvitek Inovasi Indonesia provides trusted laboratory testing, research, and scientific consulting services to support industry, academia, and society.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#services" onclick="router.navigate('services')" class="bg-primary hover:bg-blue-900 text-white px-8 py-3.5 rounded-xl font-medium transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-3 text-sm">
+                                <i class="fa-solid fa-flask-vial"></i> Explore Services
+                            </a>
+                            <a href="https://wa.me/628817596934?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 px-8 py-3.5 rounded-xl font-medium transition-all shadow-sm flex items-center justify-center gap-3 text-sm hover:border-primary/30">
+                                <i class="fa-brands fa-whatsapp text-[#25D366] text-lg"></i> WhatsApp Us
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="relative z-0 w-full lg:w-1/2 xl:w-7/12 h-[400px] sm:h-[500px] lg:h-[600px] xl:h-[650px] rounded-3xl lg:rounded-l-[80px] lg:rounded-r-3xl overflow-hidden shadow-[0_20px_50px_rgba(8,_112,_184,_0.15)] flex-shrink-0">
+                        <div class="absolute inset-0 bg-primary/5 mix-blend-multiply z-10 pointer-events-none"></div>
+                        <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&w=1000&q=80" alt="Scientist in Lab" class="w-full h-full object-cover object-center" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-white relative">
+            <div class="absolute inset-0 bg-dots opacity-50 pointer-events-none"></div>
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <p class="text-xs font-bold text-accent tracking-widest uppercase mb-4">About PT. Bonvitek Inovasi Indonesia</p>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary mb-6 leading-tight">
+                    Building Trust Through Scientific Excellence
+                </h2>
+                <p class="text-gray-600 text-base leading-relaxed mb-8 max-w-3xl mx-auto">
+                    PT. Bonvitek Inovasi Indonesia is committed to delivering accurate results, innovative solutions, and real impact for a better future. We are dedicated to providing the highest quality of laboratory testing and scientific consulting.
+                </p>
+                <a href="#about" class="nav-link inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors" onclick="router.navigate('about')">
+                    Learn More About Us <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+        </section>
+
+        <section class="py-20 section-soft">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <p class="text-xs font-bold text-secondary tracking-widest uppercase mb-3">Our Services</p>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary">
+                        Scientific <span class="text-accent">Solutions</span> for Every Need
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 justify-center">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-lift group cursor-pointer" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('mikroskopis'), 100);">
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-primary flex items-center justify-center text-xl mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-gray-900 mb-2">Mikroskopis</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Penyediaan preparat serta identifikasi morfologi endoparasit dan ektoparasit dari hewan maupun manusia.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-lift group cursor-pointer" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('hematologi'), 100);">
+                        <div class="w-12 h-12 rounded-xl bg-red-50 text-red-500 flex items-center justify-center text-xl mb-4 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-vial"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-gray-900 mb-2">Hematologi</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Pemeriksaan dan analisis hematologi darah lengkap untuk hewan.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-lift group cursor-pointer" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('kimiadarah'), 100);">
+                        <div class="w-12 h-12 rounded-xl bg-yellow-50 text-yellow-500 flex items-center justify-center text-xl mb-4 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-gray-900 mb-2">Kimia Darah</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Pemeriksaan dan analisis kimia darah lengkap untuk hewan.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-lift group cursor-pointer" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('molecular'), 100);">
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-500 flex items-center justify-center text-xl mb-4 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-dna"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-gray-900 mb-2">Molecular Testing</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Deteksi patogen pada ektoparasit dengan presisi molekuler.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-lift group cursor-pointer" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('hewanuji'), 100);">
+                        <div class="w-12 h-12 rounded-xl bg-green-50 text-secondary flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-gray-900 mb-2">Supply Hewan Uji</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Penyediaan hewan uji untuk mendukung penelitian dan pengujian laboratorium.</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-10">
+                    <a href="#services" onclick="router.navigate('services')" class="inline-flex items-center gap-2 border border-gray-200 bg-white text-gray-700 hover:text-primary px-6 py-2 rounded-full text-sm font-medium transition-colors shadow-sm">
+                        View All Services <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-white border-y border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <p class="text-xs font-bold text-accent tracking-widest uppercase mb-2">Industries We Serve</p>
+                    <h2 class="text-3xl font-heading font-bold text-primary">Supporting Various Industry Sectors</h2>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 lg:gap-8">
+                    <div class="flex flex-col items-center gap-3 w-32">
+                        <div class="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-secondary text-2xl"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <span class="text-[11px] font-medium text-gray-600 text-center">Universitas & Pendidikan</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 w-32">
+                        <div class="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-primary text-2xl"><i class="fa-solid fa-microscope"></i></div>
+                        <span class="text-[11px] font-medium text-gray-600 text-center">Lembaga Penelitian</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 w-32">
+                        <div class="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-accent text-2xl"><i class="fa-solid fa-capsules"></i></div>
+                        <span class="text-[11px] font-medium text-gray-600 text-center">Industri Farmasi</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 w-32">
+                        <div class="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-secondary text-2xl"><i class="fa-solid fa-stethoscope"></i></div>
+                        <span class="text-[11px] font-medium text-gray-600 text-center">Kedokteran Hewan / Veteriner</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 w-32">
+                        <div class="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-primary text-2xl"><i class="fa-solid fa-cow"></i></div>
+                        <span class="text-[11px] font-medium text-gray-600 text-center">Peternakan</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-slate-50 border-y border-gray-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <p class="text-xs font-bold text-accent tracking-widest uppercase mb-2">Pusat Bantuan</p>
+                    <h2 class="text-3xl font-heading font-bold text-primary">Frequently Asked Questions</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <details class="group bg-white border border-gray-200 rounded-2xl shadow-sm" open>
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-sm md:text-base text-gray-900">
+                            <span>Bagaimana prosedur pemesanan hewan uji?</span>
+                            <span class="transition group-open:rotate-180 text-gray-400">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 text-sm px-5 pb-5 leading-relaxed border-t border-gray-200 pt-4 mt-1">
+                            Anda dapat menghubungi kami melalui form kontak atau WhatsApp dengan menyebutkan jenis hewan, spesifikasi (bobot/umur), dan jumlah yang dibutuhkan. Kami akan mengirimkan penawaran beserta estimasi waktu pengiriman.
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-white border border-gray-200 rounded-2xl shadow-sm">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-sm md:text-base text-gray-900">
+                            <span>Berapa lama proses pemeriksaan hematologi / kimia darah?</span>
+                            <span class="transition group-open:rotate-180 text-gray-400">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 text-sm px-5 pb-5 leading-relaxed border-t border-gray-200 pt-4 mt-1">
+                            Hasil pemeriksaan hematologi rutin dan kimia darah hewan biasanya dapat diselesaikan dalam waktu 1-3 hari kerja setelah sampel kami terima di laboratorium.
+                        </div>
+                    </details>
+
+                    <details class="group bg-white border border-gray-200 rounded-2xl shadow-sm">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-sm md:text-base text-gray-900">
+                            <span>Apakah PT. Bonvitek Inovasi Indonesia menyediakan preparat mikroskopis custom?</span>
+                            <span class="transition group-open:rotate-180 text-gray-400">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 text-sm px-5 pb-5 leading-relaxed border-t border-gray-200 pt-4 mt-1">
+                            Ya, kami menyediakan berbagai preparat ektoparasit dan endoparasit. Jika Anda memiliki kebutuhan spesifik untuk penelitian, silakan konsultasikan dengan tim kami.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+        
+        <section class="py-16 bg-primary">
+            <div class="max-w-5xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-heading font-bold text-white mb-4">Let's Build Better Science Together</h2>
+                <p class="text-blue-100 mb-8">We are ready to be your trusted partner in scientific solutions.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contact" onclick="router.navigate('contact')" class="bg-secondary hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg flex items-center justify-center">Contact Our Team <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- END HOME PAGE -->
+
+
+    <!-- ========================================== -->
+    <!--                 ABOUT PAGE                 -->
+    <!-- ========================================== -->
+    <div id="page-about" class="page-view hidden">
+        
+        <section class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 bg-[#0f172a] overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2070&q=80" alt="Lab Background" class="w-full h-full object-cover opacity-50">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-primary/20"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex items-center gap-2 text-blue-200 text-sm font-medium mb-4">
+                    <a href="#home" class="hover:text-white transition-colors" onclick="router.navigate('home')">Home</a>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    <span class="text-white">About Us</span>
+                </div>
+                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">About Us</h1>
+                <p class="text-blue-100 text-lg max-w-2xl leading-relaxed">
+                    Learn more about PT. Bonvitek Inovasi Indonesia, our vision, mission, values, and the team behind our innovation.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-24 items-center">
+                    
+                    <div class="lg:col-span-6">
+                        <div class="inline-flex items-center gap-2 text-secondary font-bold mb-4 text-xs uppercase tracking-widest bg-green-50 px-3 py-1 rounded-full">
+                            <i class="fa-solid fa-leaf"></i> Company Overview
+                        </div>
+                        <h2 class="text-3xl font-heading font-bold text-primary mb-6 leading-tight">
+                            Building The Future <br> Through <span class="text-secondary">Science</span>
+                        </h2>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            PT. Bonvitek Inovasi Indonesia is a scientific services company driven by a team of academics and professionals with strong experience in laboratory testing, research, scientific consulting, and innovation development.
+                        </p>
+                        <p class="text-gray-600 mb-8 text-sm leading-relaxed">
+                            We are committed to delivering accurate results, innovative solutions, and real impact for industry, academia, and society. Our commitment is to grow together with our partners and contribute to a more sustainable future through science.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-6">
+                        <div class="bg-slate-50 rounded-3xl p-8 border border-gray-100 h-full flex flex-col shadow-sm">
+                            <h3 class="font-heading font-bold text-2xl text-primary mb-8">Vision & Mission</h3>
+                            
+                            <div class="mb-8">
+                                <div class="flex items-start gap-4 mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-primary flex-shrink-0 border border-gray-100">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 mb-2 text-sm">Our Vision</h4>
+                                        <p class="text-gray-600 text-xs leading-relaxed">To become a trusted and innovative scientific services company in Indonesia that contributes to sustainable development through science.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-secondary flex-shrink-0 border border-gray-100">
+                                        <i class="fa-solid fa-bullseye"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 mb-3 text-sm">Our Mission</h4>
+                                        <ul class="space-y-2 text-xs text-gray-600">
+                                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-secondary mt-0.5"></i> Provide high-quality laboratory services.</li>
+                                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-secondary mt-0.5"></i> Encourage research and innovation.</li>
+                                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-secondary mt-0.5"></i> Build strategic collaboration.</li>
+                                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-secondary mt-0.5"></i> Develop professional human resources.</li>
+                                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-secondary mt-0.5"></i> Uphold scientific integrity and quality.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-100 rounded-3xl p-8 lg:p-12 shadow-sm">
+                    <div class="text-center mb-10">
+                        <h3 class="text-2xl font-heading font-bold text-primary">Core Values</h3>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:divide-x divide-gray-100">
+                        <div class="px-4 text-center">
+                            <div class="w-12 h-12 mx-auto rounded-full bg-green-50 text-secondary flex items-center justify-center text-xl mb-4 border border-green-100"><i class="fa-solid fa-atom"></i></div>
+                            <h4 class="font-bold text-gray-900 text-sm mb-2">Scientific Integrity</h4>
+                            <p class="text-[11px] text-gray-500 leading-relaxed">We uphold honesty, transparency, and scientific ethics.</p>
+                        </div>
+                        <div class="px-4 text-center">
+                            <div class="w-12 h-12 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-xl mb-4 border border-blue-100"><i class="fa-regular fa-lightbulb"></i></div>
+                            <h4 class="font-bold text-gray-900 text-sm mb-2">Innovation</h4>
+                            <p class="text-[11px] text-gray-500 leading-relaxed">We embrace creativity to develop better solutions.</p>
+                        </div>
+                        <div class="px-4 text-center">
+                            <div class="w-12 h-12 mx-auto rounded-full bg-indigo-50 text-indigo-500 flex items-center justify-center text-xl mb-4 border border-indigo-100"><i class="fa-regular fa-handshake"></i></div>
+                            <h4 class="font-bold text-gray-900 text-sm mb-2">Collaboration</h4>
+                            <p class="text-[11px] text-gray-500 leading-relaxed">We believe in strong partnership and synergy.</p>
+                        </div>
+                        <div class="px-4 text-center">
+                            <div class="w-12 h-12 mx-auto rounded-full bg-teal-50 text-teal-600 flex items-center justify-center text-xl mb-4 border border-teal-100"><i class="fa-solid fa-shield-halved"></i></div>
+                            <h4 class="font-bold text-gray-900 text-sm mb-2">Accuracy</h4>
+                            <p class="text-[11px] text-gray-500 leading-relaxed">We deliver precise and reliable results.</p>
+                        </div>
+                        <div class="px-4 text-center">
+                            <div class="w-12 h-12 mx-auto rounded-full bg-green-50 text-secondary flex items-center justify-center text-xl mb-4 border border-green-100"><i class="fa-solid fa-leaf"></i></div>
+                            <h4 class="font-bold text-gray-900 text-sm mb-2">Sustainability</h4>
+                            <p class="text-[11px] text-gray-500 leading-relaxed">Committed to environmental responsibility.</p>
+                        </div>
+                        <div class="px-4 text-center">
+                            <div class="w-12 h-12 mx-auto rounded-full bg-amber-50 text-amber-500 flex items-center justify-center text-xl mb-4 border border-amber-100"><i class="fa-solid fa-medal"></i></div>
+                            <h4 class="font-bold text-gray-900 text-sm mb-2">Excellence</h4>
+                            <p class="text-[11px] text-gray-500 leading-relaxed">We pursue excellence in every interaction.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+    <!-- END ABOUT PAGE -->
+
+    <!-- ========================================== -->
+    <!--               SERVICES PAGE                -->
+    <!-- ========================================== -->
+    <div id="page-services" class="page-view hidden">
+        
+        <section class="relative pt-24 pb-32 lg:pt-32 lg:pb-40 bg-[#0f172a] overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=2070&q=80" alt="Laboratory Services" class="w-full h-full object-cover opacity-50">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-primary/20"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex items-center gap-2 text-blue-200 text-sm font-medium mb-6">
+                    <a href="#home" class="hover:text-white transition-colors" onclick="router.navigate('home')">Home</a>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    <span class="text-white">Services</span>
+                </div>
+                <p class="text-secondary font-bold text-sm tracking-widest uppercase mb-3">Our Services</p>
+                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight max-w-2xl">
+                    Scientific Solutions <br> for Every Need
+                </h1>
+                <p class="text-blue-100 text-lg max-w-2xl leading-relaxed">
+                    PT. Bonvitek Inovasi Indonesia provides a wide range of laboratory testing, research, and consulting services supported by advanced technology and professional experts.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services Navigation Tabs -->
+        <section class="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12">
+            <div class="bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] border border-gray-100 p-2 overflow-x-auto hide-scrollbar flex whitespace-nowrap lg:justify-center">
+                <button onclick="switchServiceTab('mikroskopis')" id="tab-mikroskopis" class="service-tab active-tab flex-shrink-0 flex flex-col items-center gap-2 px-8 py-5 border-b-2 border-secondary text-secondary bg-[#f0fdf4] rounded-xl transition-all min-w-[140px] cursor-pointer">
+                    <i class="fa-solid fa-microscope text-2xl"></i>
+                    <span class="text-sm font-bold">Mikroskopis</span>
+                </button>
+                <button onclick="switchServiceTab('hematologi')" id="tab-hematologi" class="service-tab flex-shrink-0 flex flex-col items-center gap-2 px-8 py-5 border-b-2 border-transparent text-gray-500 hover:text-primary hover:bg-gray-50 rounded-xl transition-all min-w-[140px] cursor-pointer">
+                    <i class="fa-solid fa-vial text-2xl"></i>
+                    <span class="text-sm font-medium">Hematologi</span>
+                </button>
+                <button onclick="switchServiceTab('kimiadarah')" id="tab-kimiadarah" class="service-tab flex-shrink-0 flex flex-col items-center gap-2 px-8 py-5 border-b-2 border-transparent text-gray-500 hover:text-primary hover:bg-gray-50 rounded-xl transition-all min-w-[140px] cursor-pointer">
+                    <i class="fa-solid fa-flask text-2xl"></i>
+                    <span class="text-sm font-medium">Kimia Darah</span>
+                </button>
+                <button onclick="switchServiceTab('molecular')" id="tab-molecular" class="service-tab flex-shrink-0 flex flex-col items-center gap-2 px-8 py-5 border-b-2 border-transparent text-gray-500 hover:text-primary hover:bg-gray-50 rounded-xl transition-all min-w-[140px] cursor-pointer">
+                    <i class="fa-solid fa-dna text-2xl"></i>
+                    <span class="text-sm font-medium">Molecular Testing</span>
+                </button>
+                <button onclick="switchServiceTab('hewanuji')" id="tab-hewanuji" class="service-tab flex-shrink-0 flex flex-col items-center gap-2 px-8 py-5 border-b-2 border-transparent text-gray-500 hover:text-primary hover:bg-gray-50 rounded-xl transition-all min-w-[140px] cursor-pointer">
+                    <i class="fa-solid fa-paw text-2xl"></i>
+                    <span class="text-sm font-medium">Supply Hewan Uji</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Services Content Area -->
+        <section class="py-16 section-soft relative min-h-[500px]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Content: Mikroskopis -->
+                <div id="content-mikroskopis" class="service-content block animate-fadeIn">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-6">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-100 bg-green-50 text-secondary mb-6">
+                                <i class="fa-solid fa-microscope text-sm"></i>
+                                <span class="text-xs font-bold tracking-widest uppercase">Layanan Analisis</span>
+                            </div>
+                            <h2 class="text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-6 leading-tight">
+                                Pemeriksaan <span class="text-secondary">Mikroskopis</span>
+                            </h2>
+                            <p class="text-gray-600 text-base leading-relaxed mb-8">
+                                Layanan ini mencakup penyediaan preparat berkualitas tinggi serta identifikasi morfologi yang presisi untuk endoparasit dan ektoparasit dari spesimen hewan maupun manusia.
+                            </p>
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-green-100 text-secondary flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-[10px]"></i></div>
+                                    <span class="text-gray-700 text-sm">Identifikasi akurat oleh analis ahli.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-green-100 text-secondary flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-[10px]"></i></div>
+                                    <span class="text-gray-700 text-sm">Dukungan untuk penelitian medis dan veteriner.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-green-100 text-secondary flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-[10px]"></i></div>
+                                    <span class="text-gray-700 text-sm">Menggunakan mikroskop dengan resolusi tinggi.</span>
+                                </li>
+                            </ul>
+                            <button type="button" onclick="requestService('Mikroskopis')" class="bg-secondary hover:bg-green-700 text-white px-8 py-3 rounded-xl font-medium transition-colors shadow-lg flex items-center gap-2 text-sm">
+                                Inquire About This Service <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <div class="rounded-3xl overflow-hidden shadow-2xl relative h-[400px]">
+                                <img src="https://images.unsplash.com/photo-1574327311617-b1a7d77b8b48?auto=format&fit=crop&w=1000&q=80" alt="Mikroskopis" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent flex items-end p-8">
+                                    <p class="text-white font-medium">Fasilitas lab mikroskopis modern kami.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content: Hematologi -->
+                <div id="content-hematologi" class="service-content hidden animate-fadeIn">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-6">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-100 bg-red-50 text-red-600 mb-6">
+                                <i class="fa-solid fa-vial text-sm"></i>
+                                <span class="text-xs font-bold tracking-widest uppercase">Layanan Analisis</span>
+                            </div>
+                            <h2 class="text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-6 leading-tight">
+                                Pemeriksaan <span class="text-red-500">Hematologi</span>
+                            </h2>
+                            <p class="text-gray-600 text-base leading-relaxed mb-8">
+                                Menyediakan pemeriksaan dan analisis hematologi darah lengkap secara komprehensif, khususnya difokuskan untuk spesimen hewan uji, guna memantau kondisi kesehatan dan parameter klinis.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 mb-8">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <div class="text-red-500 mb-2"><i class="fa-solid fa-droplet"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Complete Blood Count (CBC)</h4>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <div class="text-red-500 mb-2"><i class="fa-solid fa-chart-line"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Hitung Jenis Leukosit</h4>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <div class="text-red-500 mb-2"><i class="fa-solid fa-stopwatch"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Hasil Cepat & Akurat</h4>
+                                </div>
+                            </div>
+                            <button type="button" onclick="requestService('Hematologi')" class="bg-secondary hover:bg-green-700 text-white px-8 py-3 rounded-xl font-medium transition-colors shadow-lg flex items-center gap-2 text-sm">
+                                Inquire About This Service <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <div class="rounded-3xl overflow-hidden shadow-2xl relative h-[400px]">
+                                <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=80" alt="Hematologi" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content: Kimia Darah -->
+                <div id="content-kimiadarah" class="service-content hidden animate-fadeIn">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-6">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-yellow-100 bg-yellow-50 text-yellow-600 mb-6">
+                                <i class="fa-solid fa-flask text-sm"></i>
+                                <span class="text-xs font-bold tracking-widest uppercase">Layanan Analisis</span>
+                            </div>
+                            <h2 class="text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-6 leading-tight">
+                                Pemeriksaan <span class="text-yellow-500">Kimia Darah</span>
+                            </h2>
+                            <p class="text-gray-600 text-base leading-relaxed mb-8">
+                                Evaluasi fungsi organ vital dan profil metabolik melalui panel pemeriksaan kimia darah lengkap untuk spesimen hewan. Diuji menggunakan autoanalyzer berstandar tinggi.
+                            </p>
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-[10px]"></i></div>
+                                    <span class="text-gray-700 text-sm"><strong>Fungsi Hati & Ginjal:</strong> SGOT, SGPT, Ureum, Kreatinin.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-[10px]"></i></div>
+                                    <span class="text-gray-700 text-sm"><strong>Profil Lipid & Glukosa:</strong> Kolesterol, Trigliserida, Gula Darah.</span>
+                                </li>
+                            </ul>
+                            <button type="button" onclick="requestService('Kimia Darah')" class="bg-secondary hover:bg-green-700 text-white px-8 py-3 rounded-xl font-medium transition-colors shadow-lg flex items-center gap-2 text-sm">
+                                Inquire About This Service <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <div class="rounded-3xl overflow-hidden shadow-2xl relative h-[400px]">
+                                <img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=1000&q=80" alt="Kimia Darah" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content: Molecular Testing -->
+                <div id="content-molecular" class="service-content hidden animate-fadeIn">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-6">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-100 bg-purple-50 text-purple-600 mb-6">
+                                <i class="fa-solid fa-dna text-sm"></i>
+                                <span class="text-xs font-bold tracking-widest uppercase">Layanan Analisis</span>
+                            </div>
+                            <h2 class="text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-6 leading-tight">
+                                <span class="text-purple-600">Molecular</span> Testing
+                            </h2>
+                            <p class="text-gray-600 text-base leading-relaxed mb-8">
+                                Layanan deteksi molekuler canggih yang dirancang khusus untuk mendeteksi patogen secara genetik pada sampel ektoparasit dan endoparasit dengan tingkat sensitivitas maksimal.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 mb-8">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                                    <div class="text-purple-600 mb-2 text-2xl"><i class="fa-solid fa-microchip"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Real-Time PCR</h4>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                                    <div class="text-purple-600 mb-2 text-2xl"><i class="fa-solid fa-vials"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Ekstraksi DNA/RNA</h4>
+                                </div>
+                            </div>
+                            <button type="button" onclick="requestService('Molecular Testing')" class="bg-secondary hover:bg-green-700 text-white px-8 py-3 rounded-xl font-medium transition-colors shadow-lg flex items-center gap-2 text-sm">
+                                Inquire About This Service <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <div class="rounded-3xl overflow-hidden shadow-2xl relative h-[400px]">
+                                <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1000&q=80" alt="Molecular Testing" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content: Supply Hewan Uji -->
+                <div id="content-hewanuji" class="service-content hidden animate-fadeIn">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-6">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-100 bg-emerald-50 text-secondary mb-6">
+                                <i class="fa-solid fa-paw text-sm"></i>
+                                <span class="text-xs font-bold tracking-widest uppercase">Research Support</span>
+                            </div>
+                            <h2 class="text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-6 leading-tight">
+                                Supply <span class="text-secondary">Hewan Uji</span>
+                            </h2>
+                            <p class="text-gray-600 text-base leading-relaxed mb-8">
+                                Penyediaan hewan uji untuk mendukung penelitian, praktikum, dan pengujian laboratorium dengan spesifikasi yang dapat disesuaikan berdasarkan kebutuhan penelitian.
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center mb-3"><i class="fa-solid fa-rat"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Tikus Sprague Dawley</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Laboratory animal untuk kebutuhan penelitian.</p>
+                                </div>
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 rounded-xl bg-green-50 text-secondary flex items-center justify-center mb-3"><i class="fa-solid fa-mouse"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Mencit DDY</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Laboratory mouse for research purposes.</p>
+                                </div>
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3"><i class="fa-solid fa-paw"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Marmut</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Guinea Pig untuk kebutuhan penelitian.</p>
+                                </div>
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-3"><i class="fa-solid fa-paw"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Kelinci New Zealand White</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Laboratory animal dengan spesifikasi yang dapat disesuaikan.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white border border-gray-100 rounded-2xl p-5 mb-8">
+                                <h4 class="font-bold text-gray-900 text-sm mb-3">Spesifikasi dapat disesuaikan</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-full bg-slate-50 text-xs text-gray-600">Jenis / strain</span>
+                                    <span class="px-3 py-1.5 rounded-full bg-slate-50 text-xs text-gray-600">Bobot</span>
+                                    <span class="px-3 py-1.5 rounded-full bg-slate-50 text-xs text-gray-600">Jenis kelamin</span>
+                                    <span class="px-3 py-1.5 rounded-full bg-slate-50 text-xs text-gray-600">Jumlah kebutuhan</span>
+                                </div>
+                            </div>
+
+                            <button type="button" onclick="requestService('Supply Hewan Uji')" class="bg-secondary hover:bg-green-700 text-white px-8 py-3 rounded-xl font-medium transition-colors shadow-lg flex items-center gap-2 text-sm">
+                                Inquire About This Service <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <div class="rounded-3xl overflow-hidden shadow-2xl relative h-[460px] bg-slate-100">
+                                <img src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=1000&q=85" alt="Supply Hewan Uji" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-gray-950/60 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-8">
+                                    <p class="text-white font-heading text-xl font-bold">Laboratory Animal Supply</p>
+                                    <p class="text-white/80 text-sm mt-1">Supporting research with suitable laboratory animals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+    <!-- END SERVICES PAGE -->
+
+    <!-- ========================================== -->
+    <!--               PRODUCTS PAGE                -->
+    <!-- ========================================== -->
+    <div id="page-products" class="page-view hidden">
+        
+        <section class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 bg-[#0f172a] overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=2070&q=80" alt="Laboratory Products" class="w-full h-full object-cover opacity-50">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-primary/20"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex items-center gap-2 text-blue-200 text-sm font-medium mb-6">
+                    <a href="#home" class="hover:text-white transition-colors" onclick="router.navigate('home')">Home</a>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    <span class="text-white">Products</span>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-secondary font-bold text-sm tracking-widest uppercase mb-3">Our Products</p>
+                        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                            High Quality Products <br> for Accurate Results
+                        </h1>
+                        <p class="text-blue-100 text-lg mb-8 leading-relaxed max-w-xl">
+                            PT. Bonvitek Inovasi Indonesia menyediakan berbagai produk laboratorium berkualitas tinggi untuk mendukung kegiatan penelitian, pengujian, dan inovasi di berbagai institusi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kategori A: Preparat Mikroskopis & Media Praktikum -->
+        <section class="py-16 bg-slate-50 border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-10 text-center lg:text-left">
+                    <h2 class="text-2xl lg:text-3xl font-heading font-bold text-primary">Preparat Mikroskopis & Media Praktikum</h2>
+                    <p class="text-gray-600 mt-2">Penyediaan preparat untuk kebutuhan pembelajaran, praktikum, dan identifikasi ektoparasit.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <div class="bg-white rounded-2xl p-5 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-bug"></i></div>
+                        <h3 class="font-bold text-gray-900 text-xs md:text-sm mb-1">Stomoxys calcitrans</h3>
+                        <p class="text-[10px] md:text-xs text-gray-500">(Lalat kandang)</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-5 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-bug"></i></div>
+                        <h3 class="font-bold text-gray-900 text-xs md:text-sm mb-1">Tabanus sp.</h3>
+                        <p class="text-[10px] md:text-xs text-gray-500">(Lalat kuda)</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-5 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-mosquito"></i></div>
+                        <h3 class="font-bold text-gray-900 text-xs md:text-sm mb-1">Anopheles sp.</h3>
+                        <p class="text-[10px] md:text-xs text-gray-500">(Vektor malaria)</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-5 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-spider"></i></div>
+                        <h3 class="font-bold text-gray-900 text-xs md:text-sm mb-1">Haematopinus eurysternus</h3>
+                        <p class="text-[10px] md:text-xs text-gray-500">(Kutu sapi)</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-5 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-spider"></i></div>
+                        <h3 class="font-bold text-gray-900 text-xs md:text-sm mb-1">Trichodectes canis</h3>
+                        <p class="text-[10px] md:text-xs text-gray-500">(Kutu anjing)</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-5 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-spider"></i></div>
+                        <h3 class="font-bold text-gray-900 text-xs md:text-sm mb-1">Damalinia bovis</h3>
+                        <p class="text-[10px] md:text-xs text-gray-500">(Kutu sapi)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kategori B: Penyediaan Hewan Uji -->
+        <section class="py-16 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-10 text-center lg:text-left flex flex-col lg:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-2xl lg:text-3xl font-heading font-bold text-primary">Penyediaan Hewan Uji</h2>
+                        <p class="text-gray-600 mt-2">Hewan uji untuk mendukung kebutuhan penelitian dan pengujian laboratorium.</p>
+                    </div>
+                    <div class="bg-green-50 px-4 py-2 rounded-lg border border-green-100 shrink-0">
+                        <span class="text-secondary font-medium text-xs"><i class="fa-solid fa-check-circle"></i> Hewan sehat terkontrol, bobot & jenis kelamin dapat disesuaikan.</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-3xl border border-gray-100 p-5 hover:shadow-lg transition-all group text-center flex flex-col">
+                        <div class="h-40 bg-slate-50 rounded-2xl mb-5 flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=400&q=80" alt="Tikus" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90">
+                        </div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Tikus</h3>
+                        <p class="text-sm text-primary font-medium mb-3">Sprague Dawley (SD)</p>
+                        <p class="text-xs text-gray-500 mt-auto bg-gray-50 py-1.5 rounded-full">Laboratory Animal</p>
+                    </div>
+                    <div class="bg-white rounded-3xl border border-gray-100 p-5 hover:shadow-lg transition-all group text-center flex flex-col">
+                        <div class="h-40 bg-slate-50 rounded-2xl mb-5 flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1425082661705-1834bfd08d98?auto=format&fit=crop&w=400&q=80" alt="Mencit" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90">
+                        </div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Mencit</h3>
+                        <p class="text-sm text-primary font-medium mb-3">Deutschland, Denken, and Yoken (DDY)</p>
+                        <p class="text-xs text-gray-500 mt-auto bg-gray-50 py-1.5 rounded-full">Laboratory Animal</p>
+                    </div>
+                    <div class="bg-white rounded-3xl border border-gray-100 p-5 hover:shadow-lg transition-all group text-center flex flex-col">
+                        <div class="h-40 bg-slate-50 rounded-2xl mb-5 flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1589182372561-12c85dcda0ee?auto=format&fit=crop&w=400&q=80" alt="Marmut" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90">
+                        </div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Marmut</h3>
+                        <p class="text-sm text-primary font-medium mb-3">Guinea Pig</p>
+                        <p class="text-xs text-gray-500 mt-auto bg-gray-50 py-1.5 rounded-full">Laboratory Animal</p>
+                    </div>
+                    <div class="bg-white rounded-3xl border border-gray-100 p-5 hover:shadow-lg transition-all group text-center flex flex-col">
+                        <div class="h-40 bg-slate-50 rounded-2xl mb-5 flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1585110396000-c9fd4e4e11fd?auto=format&fit=crop&w=400&q=80" alt="Kelinci" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90">
+                        </div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Kelinci</h3>
+                        <p class="text-sm text-primary font-medium mb-3">New Zealand White</p>
+                        <p class="text-xs text-gray-500 mt-auto bg-gray-50 py-1.5 rounded-full">Laboratory Animal</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kategori C: Alat Koleksi & Pengujian -->
+        <section class="py-16 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-10 text-center lg:text-left">
+                    <h2 class="text-2xl lg:text-3xl font-heading font-bold text-primary">Alat Koleksi & Pengujian</h2>
+                    <p class="text-gray-600 mt-2">Peralatan pendukung untuk kebutuhan koleksi, preparasi, dan pengujian laboratorium.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div class="bg-white rounded-2xl p-6 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-2xl mb-4 group-hover:-translate-y-1 transition-transform"><i class="fa-solid fa-box-archive"></i></div>
+                        <h3 class="font-bold text-gray-900 text-sm mb-1">Culex Trap</h3>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-2xl mb-4 group-hover:-translate-y-1 transition-transform"><i class="fa-solid fa-syringe"></i></div>
+                        <h3 class="font-bold text-gray-900 text-sm mb-1">Aspirator</h3>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-2xl mb-4 group-hover:-translate-y-1 transition-transform"><i class="fa-solid fa-pen-clip"></i></div>
+                        <h3 class="font-bold text-gray-900 text-sm mb-1">Forceps <span class="block text-[10px] text-gray-500 font-normal mt-1">(Fine-Tip)</span></h3>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-2xl mb-4 group-hover:-translate-y-1 transition-transform"><i class="fa-solid fa-fan"></i></div>
+                        <h3 class="font-bold text-gray-900 text-sm mb-1">Aspirator Procopack</h3>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 text-center border border-gray-100 hover:border-primary hover:shadow-lg transition-all group">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-blue-50 text-primary flex items-center justify-center text-2xl mb-4 group-hover:-translate-y-1 transition-transform"><i class="fa-solid fa-bottle-droplet"></i></div>
+                        <h3 class="font-bold text-gray-900 text-sm mb-1">CDC Bottle</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- END PRODUCTS PAGE -->
+
+    <!-- ========================================== -->
+    <!--              INDUSTRIES PAGE               -->
+    <!-- ========================================== -->
+    <div id="page-industries" class="page-view hidden">
+        
+        <section class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 bg-[#0f172a] overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2070&q=80" alt="Industries Banner" class="w-full h-full object-cover opacity-50">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-primary/20"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex items-center gap-2 text-blue-200 text-sm font-medium mb-6">
+                    <a href="#home" class="hover:text-white transition-colors" onclick="router.navigate('home')">Home</a>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    <span class="text-white">Industries</span>
+                </div>
+                
+                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight max-w-3xl">
+                    <span class="text-secondary">Industries</span> We Serve
+                </h1>
+                <p class="text-blue-100 text-lg mb-8 leading-relaxed max-w-2xl">
+                    PT. Bonvitek Inovasi Indonesia provides accurate testing, reliable research, and expert consultation for a wide range of industries. We help our clients ensure quality, safety, compliance, and innovation.
+                </p>
+            </div>
+        </section>
+
+        <!-- Solutions Grid -->
+        <section class="py-20 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-heading font-bold text-primary mb-4">Scientific Solutions for Every Industry</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <!-- Universitas & Pendidikan -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all">
+                        <div class="h-40 bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Universitas & Pendidikan" class="w-full h-full object-cover">
+                        </div>
+                        <div class="pt-10 px-6 pb-6 relative bg-white">
+                            <div class="absolute -top-7 left-6 w-14 h-14 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center text-secondary text-2xl">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="font-bold font-heading text-gray-900 text-base mb-2">Universitas & Pendidikan</h3>
+                            <a href="#contact" onclick="router.navigate('contact')" class="text-secondary text-xs font-semibold flex items-center gap-1 hover:text-green-700">Contact Us <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+                    <!-- Lembaga Penelitian -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all">
+                        <div class="h-40 bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Lembaga Penelitian" class="w-full h-full object-cover">
+                        </div>
+                        <div class="pt-10 px-6 pb-6 relative bg-white">
+                            <div class="absolute -top-7 left-6 w-14 h-14 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center text-primary text-2xl">
+                                <i class="fa-solid fa-microscope"></i>
+                            </div>
+                            <h3 class="font-bold font-heading text-gray-900 text-base mb-2">Lembaga Penelitian</h3>
+                            <a href="#contact" onclick="router.navigate('contact')" class="text-secondary text-xs font-semibold flex items-center gap-1 hover:text-green-700">Contact Us <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+                    <!-- Industri Farmasi -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all">
+                        <div class="h-40 bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Industri Farmasi" class="w-full h-full object-cover">
+                        </div>
+                        <div class="pt-10 px-6 pb-6 relative bg-white">
+                            <div class="absolute -top-7 left-6 w-14 h-14 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center text-accent text-2xl">
+                                <i class="fa-solid fa-capsules"></i>
+                            </div>
+                            <h3 class="font-bold font-heading text-gray-900 text-base mb-2">Industri Farmasi</h3>
+                            <a href="#contact" onclick="router.navigate('contact')" class="text-secondary text-xs font-semibold flex items-center gap-1 hover:text-green-700">Contact Us <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+                    <!-- Kedokteran Hewan -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all">
+                        <div class="h-40 bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kedokteran Hewan" class="w-full h-full object-cover">
+                        </div>
+                        <div class="pt-10 px-6 pb-6 relative bg-white">
+                            <div class="absolute -top-7 left-6 w-14 h-14 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center text-secondary text-2xl">
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+                            <h3 class="font-bold font-heading text-gray-900 text-base mb-2">Kedokteran Hewan / Veteriner</h3>
+                            <a href="#contact" onclick="router.navigate('contact')" class="text-secondary text-xs font-semibold flex items-center gap-1 hover:text-green-700">Contact Us <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+                    <!-- Peternakan -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all">
+                        <div class="h-40 bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Peternakan" class="w-full h-full object-cover">
+                        </div>
+                        <div class="pt-10 px-6 pb-6 relative bg-white">
+                            <div class="absolute -top-7 left-6 w-14 h-14 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center text-primary text-2xl">
+                                <i class="fa-solid fa-cow"></i>
+                            </div>
+                            <h3 class="font-bold font-heading text-gray-900 text-base mb-2">Peternakan</h3>
+                            <a href="#contact" onclick="router.navigate('contact')" class="text-secondary text-xs font-semibold flex items-center gap-1 hover:text-green-700">Contact Us <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- END INDUSTRIES PAGE -->
+
+    <!-- ========================================== -->
+    <!--                CONTACT PAGE                -->
+    <!-- ========================================== -->
+    <div id="page-contact" class="page-view hidden bg-slate-50">
+        
+        <section class="relative pt-24 pb-32 lg:pt-32 lg:pb-40 bg-[#0f172a] overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=2070&q=80" alt="Contact Banner" class="w-full h-full object-cover opacity-50">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-primary/20"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex items-center gap-2 text-blue-200 text-sm font-medium mb-6">
+                    <a href="#home" class="hover:text-white transition-colors" onclick="router.navigate('home')">Home</a>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    <span class="text-white">Contact Us</span>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                            Contact Us
+                        </h1>
+                        <h2 class="font-heading text-2xl md:text-3xl font-semibold text-secondary mb-6">We'd Love to Hear From You</h2>
+                        <p class="text-blue-100 text-lg mb-8 leading-relaxed max-w-xl">
+                            Have a question, need more information, or ready to start a project? Our team is here to help. Reach out to us and we'll respond as soon as possible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Form & Map -->
+        <section class="py-8 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    
+                    <!-- Form Container -->
+                    <div class="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm">
+                        <h2 class="text-2xl font-heading font-bold text-primary mb-6">Send Us a Message</h2>
+                        
+                        <form id="whatsapp-contact-form" class="space-y-5" onsubmit="sendContactViaWhatsApp(event)" novalidate>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="wa-name" class="block text-xs font-bold text-gray-700 mb-1.5">Nama *</label>
+                                    <input id="wa-name" name="name" type="text" placeholder="Nama lengkap" required class="wa-form-input w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50/50">
+                                    <p id="error-wa-name" class="form-error hidden"></p>
+                                </div>
+                                <div>
+                                    <label for="wa-org" class="block text-xs font-bold text-gray-700 mb-1.5">Instansi / Perusahaan</label>
+                                    <input id="wa-org" name="org" type="text" placeholder="Nama instansi / perusahaan" class="wa-form-input w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50/50">
+                                </div>
+                                <div>
+                                    <label for="wa-phone" class="block text-xs font-bold text-gray-700 mb-1.5">Nomor WhatsApp *</label>
+                                    <input id="wa-phone" name="phone" type="tel" placeholder="08xxxxxxxxxx" required class="wa-form-input w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50/50">
+                                    <p id="error-wa-phone" class="form-error hidden"></p>
+                                </div>
+                                <div>
+                                    <label for="wa-email" class="block text-xs font-bold text-gray-700 mb-1.5">Email <span class="font-normal text-gray-400">(opsional)</span></label>
+                                    <input id="wa-email" name="email" type="email" placeholder="nama@email.com" class="wa-form-input w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50/50">
+                                    <p id="error-wa-email" class="form-error hidden"></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="wa-service" class="block text-xs font-bold text-gray-700 mb-1.5">Layanan yang diminati *</label>
+                                <select id="wa-service" name="service" required class="wa-form-input w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50/50 appearance-none cursor-pointer">
+                                    <option value="">Pilih layanan</option>
+                                    <option value="Mikroskopis">Mikroskopis</option>
+                                    <option value="Hematologi">Hematologi</option>
+                                    <option value="Kimia Darah">Kimia Darah</option>
+                                    <option value="Molecular Testing">Molecular Testing</option>
+                                    <option value="Supply Hewan Uji">Supply Hewan Uji</option>
+                                    <option value="Layanan Lainnya">Layanan Lainnya</option>
+                                </select>
+                                <p id="error-wa-service" class="form-error hidden"></p>
+                            </div>
+
+                            <div>
+                                <label for="wa-message" class="block text-xs font-bold text-gray-700 mb-1.5">Pesan / kebutuhan *</label>
+                                <textarea id="wa-message" name="message" rows="5" required placeholder="Ceritakan kebutuhan, jenis sampel, jumlah, atau informasi yang ingin Anda tanyakan..." class="wa-form-input w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50/50 resize-none"></textarea>
+                                <p id="error-wa-message" class="form-error hidden"></p>
+                            </div>
+
+                            <div id="wa-form-alert" class="hidden rounded-xl px-4 py-3 text-sm"></div>
+
+                            <button id="wa-submit-btn" type="submit" class="w-full sm:w-auto bg-[#25D366] hover:bg-[#1ebe5d] text-white px-8 py-3.5 rounded-xl font-semibold transition-colors shadow-lg flex items-center justify-center gap-2 text-sm">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Send via WhatsApp <span>→</span>
+                            </button>
+                            <p class="text-[11px] text-gray-400">Pesan akan dibuka di WhatsApp kami untuk Anda review sebelum dikirim.</p>
+                        </form>
+                    </div>
+
+                    <!-- Map Container -->
+                    <div class="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm flex flex-col">
+                        <h2 class="text-2xl font-heading font-bold text-primary mb-6">Our Head Office</h2>
+                        
+                        <div class="space-y-5 mb-8 text-sm text-gray-600">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-blue-50 text-primary flex items-center justify-center shrink-0 text-lg"><i class="fa-solid fa-location-dot"></i></div>
+                                <span class="pt-2 leading-relaxed">PT. Bonvitek Inovasi Indonesia<br>Jalan Sindang Barang Pengkolan No.177, RT.03/RW.08,<br>Sindangbarang, Kec. Bogor Bar., Kota Bogor, Jawa Barat 16117</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-green-50 text-secondary flex items-center justify-center shrink-0 text-lg"><i class="fa-brands fa-whatsapp"></i></div>
+                                <span class="pt-2 font-medium">+62 881-7596-934</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 text-lg"><i class="fa-solid fa-envelope"></i></div>
+                                <span class="pt-2 font-medium">bonvitekinovasi@gmail.com</span>
+                            </div>
+                        </div>
+
+                        <!-- Real Map Iframe -->
+                        <div class="flex-grow rounded-2xl overflow-hidden relative min-h-[300px] border border-gray-100 shadow-inner">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d299.32926694624007!2d106.76734117761598!3d-6.580542536171105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c4f900e9ca05%3A0x39793e14ce7f70c!2sJl.%20Sindang%20Barang%20Pengkolan%20No.177%2C%20RT.03%2FRW.08%2C%20Sindangbarang%2C%20Kec.%20Bogor%20Bar.%2C%20bogor%20kota%2C%20Jawa%20Barat%2016117!5e1!3m2!1sen!2sid!4v1788086331750!5m2!1sen!2sid" class="absolute inset-0 w-full h-full" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section for Contact -->
+        <section class="py-14 lg:py-16 bg-white border-t border-gray-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <p class="text-xs font-bold text-secondary tracking-widest uppercase mb-3">Need More Information?</p>
+                    <h2 class="text-3xl font-heading font-bold text-primary">Frequently Asked Questions</h2>
+                    <p class="text-gray-500 text-sm mt-3 max-w-2xl mx-auto">Quick answers to common questions about our services and testing.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                    <details class="group bg-slate-50 border border-gray-200 rounded-2xl" open>
+                        <summary class="flex justify-between items-center gap-4 font-bold cursor-pointer list-none p-5 text-sm md:text-base text-gray-900">
+                            <span>How can I request a service?</span>
+                            <span class="transition group-open:rotate-180 text-gray-400"><i class="fa-solid fa-chevron-down"></i></span>
+                        </summary>
+                        <div class="text-gray-600 text-sm px-5 pb-5 leading-relaxed border-t border-gray-200 pt-4 mt-1">
+                            You can select a service on the Services page and choose <strong>Inquire About This Service</strong>, or contact our team directly through the WhatsApp form above.
+                        </div>
+                    </details>
+                    <details class="group bg-slate-50 border border-gray-200 rounded-2xl">
+                        <summary class="flex justify-between items-center gap-4 font-bold cursor-pointer list-none p-5 text-sm md:text-base text-gray-900">
+                            <span>What information should I prepare before testing?</span>
+                            <span class="transition group-open:rotate-180 text-gray-400"><i class="fa-solid fa-chevron-down"></i></span>
+                        </summary>
+                        <div class="text-gray-600 text-sm px-5 pb-5 leading-relaxed border-t border-gray-200 pt-4 mt-1">
+                            Please prepare information about the service required, sample type, approximate quantity, and any specific research or testing requirements you may have.
+                        </div>
+                    </details>
+                    <details class="group bg-slate-50 border border-gray-200 rounded-2xl">
+                        <summary class="flex justify-between items-center gap-4 font-bold cursor-pointer list-none p-5 text-sm md:text-base text-gray-900">
+                            <span>How long does laboratory testing take?</span>
+                            <span class="transition group-open:rotate-180 text-gray-400"><i class="fa-solid fa-chevron-down"></i></span>
+                        </summary>
+                        <div class="text-gray-600 text-sm px-5 pb-5 leading-relaxed border-t border-gray-200 pt-4 mt-1">
+                            Turnaround time depends on the selected service, sample requirements, and testing scope. Contact our team for an estimate based on your specific request.
+                        </div>
+                    </details>
+                </div>
+                <div class="text-center mt-8">
+                    <button type="button" onclick="openBonvitekWhatsApp()" class="inline-flex items-center gap-2 text-secondary font-semibold text-sm hover:text-green-700 transition-colors">
+                        Still have questions? Chat with PT. Bonvitek Inovasi Indonesia <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- END CONTACT PAGE -->
+
+
+    <!-- Floating WhatsApp -->
+    <div class="wa-float" aria-label="WhatsApp PT. Bonvitek Inovasi Indonesia">
+        <span class="wa-tooltip">Chat with us</span>
+        <a href="https://wa.me/628817596934?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="wa-float-button" aria-label="Chat with us via WhatsApp">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t-[6px] border-secondary mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <!-- Brand -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl">
+                            <i class="fa-solid fa-flask-vial"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-heading font-bold text-xl text-white leading-tight">BONVITEK</span>
+                            <span class="font-heading font-semibold text-xs text-gray-400 leading-tight">PT. Bonvitek Inovasi Indonesia</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-6 max-w-sm leading-relaxed">
+                        Providing trusted laboratory testing, research, and consulting services to support industry, academia, and society.
+                    </p>
+                    <a href="https://wa.me/628817596934?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+                        <i class="fa-brands fa-whatsapp"></i> Chat via WhatsApp
+                    </a>
+                </div>
+
+                <!-- Links 1 -->
+                <div>
+                    <h4 class="text-white font-heading font-bold mb-5 text-sm">Quick Links</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#home" onclick="router.navigate('home')" class="hover:text-secondary transition-colors">Home</a></li>
+                        <li><a href="#about" onclick="router.navigate('about')" class="hover:text-secondary transition-colors">About Us</a></li>
+                        <li><a href="#services" onclick="router.navigate('services')" class="hover:text-secondary transition-colors">Services</a></li>
+                        <li><a href="#products" onclick="router.navigate('products')" class="hover:text-secondary transition-colors">Products</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 2 -->
+                <div>
+                    <h4 class="text-white font-heading font-bold mb-5 text-sm">Our Services</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#services" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('mikroskopis'),100)" class="hover:text-secondary transition-colors">Mikroskopis</a></li>
+                        <li><a href="#services" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('hematologi'),100)" class="hover:text-secondary transition-colors">Hematologi</a></li>
+                        <li><a href="#services" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('kimiadarah'),100)" class="hover:text-secondary transition-colors">Kimia Darah</a></li>
+                        <li><a href="#services" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('molecular'),100)" class="hover:text-secondary transition-colors">Molecular Testing</a></li>
+                        <li><a href="#services" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('hewanuji'),100)" class="hover:text-secondary transition-colors">Supply Hewan Uji</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-heading font-bold mb-5 text-sm">Contact Us</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-secondary"></i>
+                            <span class="text-gray-400 leading-relaxed">Jalan Sindang Barang Pengkolan No.177, RT.03/RW.08,<br>Sindangbarang, Kec. Bogor Bar.,<br>Kota Bogor, Jawa Barat 16117</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-secondary"></i>
+                            <span class="text-gray-400">+62 881-7596-934</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-secondary"></i>
+                            <span class="text-gray-400">bonvitekinovasi@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>&copy; 2026 PT. Bonvitek Inovasi Indonesia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Router System
+        const router = {
+            init: function() {
+                const initialHash = window.location.hash.replace('#', '') || 'home';
+                this.navigate(initialHash);
+                window.addEventListener('hashchange', () => {
+                    const hash = window.location.hash.replace('#', '') || 'home';
+                    this.navigate(hash, false);
+                });
+            },
+            navigate: function(pageId, updateHash = true) {
+                const targetPage = document.getElementById(`page-${pageId}`);
+                if (!targetPage) return;
+                document.querySelectorAll('.page-view').forEach(page => {
+                    page.classList.remove('active');
+                });
+                targetPage.classList.add('active');
+                
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('href') === `#${pageId}`) {
+                        link.classList.add('active');
+                    }
+                });
+                if (updateHash) {
+                    window.location.hash = pageId;
+                }
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        };
+
+        // WhatsApp contact flow
+        const BONVITEK_WHATSAPP = '628817596934';
+        const DEFAULT_WA_MESSAGE = 'Halo PT. Bonvitek Inovasi Indonesia, saya ingin mendapatkan informasi mengenai layanan laboratorium.';
+
+        function openBonvitekWhatsApp(message = DEFAULT_WA_MESSAGE) {
+            const url = 'https://wa.me/' + BONVITEK_WHATSAPP + '?text=' + encodeURIComponent(message);
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        function requestService(serviceName) {
+            const form = document.getElementById('whatsapp-contact-form');
+            if (!form) return;
+            router.navigate('contact');
+            setTimeout(() => {
+                const service = document.getElementById('wa-service');
+                const message = document.getElementById('wa-message');
+                if (service) service.value = serviceName;
+                if (message && !message.value.trim()) {
+                    message.value = `Halo PT. Bonvitek Inovasi Indonesia, saya tertarik dengan layanan ${serviceName}. Saya ingin mendapatkan informasi mengenai harga, persyaratan sampel, dan estimasi waktu pengerjaan.`;
+                }
+                const contactPage = document.getElementById('page-contact');
+                contactPage?.scrollIntoView({behavior:'smooth', block:'start'});
+                setTimeout(() => document.getElementById('wa-name')?.focus(), 450);
+            }, 120);
+        }
+
+        function clearFormErrors() {
+            document.querySelectorAll('#whatsapp-contact-form .form-error').forEach(el => {
+                el.textContent = '';
+                el.classList.add('hidden');
+            });
+            const alert = document.getElementById('wa-form-alert');
+            if (alert) alert.className = 'hidden rounded-xl px-4 py-3 text-sm';
+        }
+
+        function setFormError(id, message) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.textContent = message;
+                el.classList.remove('hidden');
+            }
+        }
+
+        function sendContactViaWhatsApp(event) {
+            event.preventDefault();
+            clearFormErrors();
+
+            const name = document.getElementById('wa-name')?.value.trim();
+            const org = document.getElementById('wa-org')?.value.trim();
+            const phone = document.getElementById('wa-phone')?.value.trim();
+            const email = document.getElementById('wa-email')?.value.trim();
+            const service = document.getElementById('wa-service')?.value;
+            const message = document.getElementById('wa-message')?.value.trim();
+
+            let valid = true;
+            if (!name) { setFormError('error-wa-name', 'Nama wajib diisi.'); valid = false; }
+            if (!phone) { setFormError('error-wa-phone', 'Nomor WhatsApp wajib diisi.'); valid = false; }
+            else if (!/^[0-9+()\-\s]{8,20}$/.test(phone)) { setFormError('error-wa-phone', 'Masukkan nomor WhatsApp yang valid.'); valid = false; }
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setFormError('error-wa-email', 'Format email belum valid.'); valid = false; }
+            if (!service) { setFormError('error-wa-service', 'Pilih layanan yang diminati.'); valid = false; }
+            if (!message) { setFormError('error-wa-message', 'Pesan / kebutuhan wajib diisi.'); valid = false; }
+
+            if (!valid) {
+                const firstError = document.querySelector('#whatsapp-contact-form .form-error:not(.hidden)');
+                firstError?.previousElementSibling?.focus?.();
+                return;
+            }
+
+            const submit = document.getElementById('wa-submit-btn');
+            const original = submit.innerHTML;
+            submit.disabled = true;
+            submit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing WhatsApp...';
+
+            // FORMAT PESAN WHATSAPP YANG SUDAH DIPERBAIKI (Menggunakan Template Literal JS)
+            const waMessage = `Halo PT. Bonvitek Inovasi Indonesia, saya ingin melakukan inquiry layanan.
+
+Nama: ${name}
+Instansi: ${org || '-'}
+WhatsApp: ${phone}
+Email: ${email || '-'}
+Layanan: ${service}
+
+Kebutuhan:
+${message}
+
+Terima kasih.`;
+
+            const url = 'https://wa.me/' + BONVITEK_WHATSAPP + '?text=' + encodeURIComponent(waMessage);
+            window.open(url, '_blank', 'noopener,noreferrer');
+
+            const alert = document.getElementById('wa-form-alert');
+            if (alert) {
+                alert.textContent = 'WhatsApp telah dibuka dengan pesan inquiry Anda.';
+                alert.className = 'rounded-xl px-4 py-3 text-sm bg-green-50 text-green-700 border border-green-100';
+            }
+            setTimeout(() => {
+                submit.disabled = false;
+                submit.innerHTML = original;
+            }, 700);
+        }
+
+        // Mobile navigation
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Service Tab Switching Logic
+        function switchServiceTab(tabId) {
+            document.querySelectorAll('.service-tab').forEach(tab => {
+                tab.classList.remove('active-tab', 'border-secondary', 'text-secondary', 'bg-[#f0fdf4]');
+                tab.classList.add('border-transparent', 'text-gray-500', 'hover:text-primary', 'hover:bg-gray-50');
+                const textSpan = tab.querySelector('span');
+                if(textSpan) {
+                    textSpan.classList.remove('font-bold');
+                    textSpan.classList.add('font-medium');
+                }
+            });
+
+            const activeTab = document.getElementById('tab-' + tabId);
+            if(activeTab) {
+                activeTab.classList.remove('border-transparent', 'text-gray-500', 'hover:text-primary', 'hover:bg-gray-50');
+                activeTab.classList.add('active-tab', 'border-secondary', 'text-secondary', 'bg-[#f0fdf4]');
+                const textSpan = activeTab.querySelector('span');
+                if(textSpan) {
+                    textSpan.classList.remove('font-medium');
+                    textSpan.classList.add('font-bold');
+                }
+            }
+
+            document.querySelectorAll('.service-content').forEach(content => {
+                content.classList.remove('block');
+                content.classList.add('hidden');
+            });
+
+            const activeContent = document.getElementById('content-' + tabId);
+            if(activeContent) {
+                activeContent.classList.remove('hidden');
+                activeContent.classList.add('block');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            router.init();
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('border-gray-100', 'border-transparent');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('border-transparent', 'border-gray-100');
+            }
+        });
+    </script>
+</body>
+</html>
