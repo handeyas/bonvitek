@@ -253,9 +253,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="router.navigate('home')">
                     <div class="flex items-center gap-2">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl">
-                            <i class="fa-solid fa-flask-vial"></i>
-                        </div>
+                        <img src="https://raw.githubusercontent.com/handeyas/bonvitek/342dd82a0d20069695dea38827d55248ee10188e/logo%20bonvitek.png" alt="Logo Bonvitek" class="w-10 h-10 object-contain">
                         <div class="flex flex-col">
                             <span class="font-heading font-bold text-xl text-primary leading-tight">BONVITEK</span>
                             <span class="font-heading font-semibold text-[10px] sm:text-xs text-gray-500 leading-tight">PT. Bonvitek Inovasi Indonesia</span>
@@ -290,7 +288,7 @@
                     <a href="#products" onclick="router.navigate('products')" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50">Products</a>
                     <a href="#industries" onclick="router.navigate('industries')" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50">Industries</a>
                     <a href="#contact" onclick="router.navigate('contact')" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50">Contact</a>
-                    <a href="https://wa.me/628996666647?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="block px-4 py-3 rounded-xl text-sm font-semibold text-white bg-[#25D366] hover:bg-[#1ebe5d]">
+                    <a href="https://wa.me/6285887045575?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="block px-4 py-3 rounded-xl text-sm font-semibold text-white bg-[#25D366] hover:bg-[#1ebe5d]">
                         <i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp Us
                     </a>
                 </div>
@@ -329,7 +327,7 @@
                             <a href="#services" onclick="router.navigate('services')" class="bg-primary hover:bg-blue-900 text-white px-8 py-3.5 rounded-xl font-medium transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-3 text-sm">
                                 <i class="fa-solid fa-flask-vial"></i> Explore Services
                             </a>
-                            <a href="https://wa.me/628996666647?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 px-8 py-3.5 rounded-xl font-medium transition-all shadow-sm flex items-center justify-center gap-3 text-sm hover:border-primary/30">
+                            <a href="https://wa.me/6285887045575?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 px-8 py-3.5 rounded-xl font-medium transition-all shadow-sm flex items-center justify-center gap-3 text-sm hover:border-primary/30">
                                 <i class="fa-brands fa-whatsapp text-[#25D366] text-lg"></i> WhatsApp Us
                             </a>
                         </div>
@@ -368,7 +366,7 @@
                     </h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 justify-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
                     <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-lift group cursor-pointer" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('mikroskopis'), 100);">
                         <div class="w-12 h-12 rounded-xl bg-blue-50 text-primary flex items-center justify-center text-xl mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
                             <i class="fa-solid fa-microscope"></i>
@@ -403,6 +401,11 @@
                         </div>
                         <h3 class="font-heading font-bold text-gray-900 mb-2">Supply Hewan Uji</h3>
                         <p class="text-sm text-gray-500 leading-relaxed">Penyediaan hewan uji untuk mendukung penelitian dan pengujian laboratorium.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-lift group cursor-pointer" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('toksisitas'), 100);">
+                        <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center text-xl mb-4 group-hover:bg-orange-600 group-hover:text-white transition-colors"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="font-heading font-bold text-gray-900 mb-2">Uji Toksisitas</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Pengujian akut, subakut, kronis, oral, dermal, inhalasi, iritasi, dan sensitisasi.</p>
                     </div>
                 </div>
 
@@ -681,6 +684,10 @@
                     <i class="fa-solid fa-paw text-2xl"></i>
                     <span class="text-sm font-medium">Supply Hewan Uji</span>
                 </button>
+                <button onclick="switchServiceTab('toksisitas')" id="tab-toksisitas" class="service-tab flex-shrink-0 flex flex-col items-center gap-2 px-8 py-5 border-b-2 border-transparent text-gray-500 hover:text-primary hover:bg-gray-50 rounded-xl transition-all min-w-[140px] cursor-pointer">
+                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    <span class="text-sm font-medium">Uji Toksisitas</span>
+                </button>
             </div>
         </section>
 
@@ -879,6 +886,21 @@
                                     <h4 class="font-bold text-sm text-gray-900">Kelinci New Zealand White</h4>
                                     <p class="text-xs text-gray-500 mt-1">Laboratory animal dengan spesifikasi yang dapat disesuaikan.</p>
                                 </div>
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-3"><i class="fa-solid fa-bug"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Kecoa</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Serangga uji untuk penelitian dan pengujian laboratorium.</p>
+                                </div>
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center mb-3"><i class="fa-solid fa-mosquito"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Nyamuk</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Nyamuk uji sesuai kebutuhan penelitian.</p>
+                                </div>
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3"><i class="fa-solid fa-bug"></i></div>
+                                    <h4 class="font-bold text-sm text-gray-900">Lalat</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Lalat uji untuk riset dan evaluasi laboratorium.</p>
+                                </div>
                             </div>
 
                             <div class="bg-white border border-gray-100 rounded-2xl p-5 mb-8">
@@ -902,6 +924,42 @@
                                 <div class="absolute bottom-0 left-0 right-0 p-8">
                                     <p class="text-white font-heading text-xl font-bold">Laboratory Animal Supply</p>
                                     <p class="text-white/80 text-sm mt-1">Supporting research with suitable laboratory animals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content: Uji Toksisitas -->
+                <div id="content-toksisitas" class="service-content hidden animate-fadeIn">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-orange-100 bg-orange-50 text-orange-600 mb-6">
+                                <i class="fa-solid fa-shield-halved text-sm"></i>
+                                <span class="text-xs font-bold tracking-widest uppercase">Safety Assessment</span>
+                            </div>
+                            <h2 class="text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-6 leading-tight">Uji <span class="text-orange-600">Toksisitas</span></h2>
+                            <p class="text-gray-600 text-base leading-relaxed mb-8">Evaluasi potensi efek berbahaya suatu bahan, produk, atau formulasi berdasarkan tujuan penelitian, jalur paparan, dan durasi pengamatan.</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                                <div class="bg-white border border-orange-100 rounded-2xl p-4 shadow-sm"><h4 class="font-bold text-orange-700 text-sm mb-1"><i class="fa-solid fa-bolt mr-2"></i>Akut</h4><p class="text-xs text-gray-500">Efek paparan tunggal atau jangka pendek.</p></div>
+                                <div class="bg-white border border-orange-100 rounded-2xl p-4 shadow-sm"><h4 class="font-bold text-orange-700 text-sm mb-1"><i class="fa-solid fa-calendar-days mr-2"></i>Subakut</h4><p class="text-xs text-gray-500">Efek paparan berulang dalam periode tertentu.</p></div>
+                                <div class="bg-white border border-orange-100 rounded-2xl p-4 shadow-sm"><h4 class="font-bold text-orange-700 text-sm mb-1"><i class="fa-solid fa-chart-line mr-2"></i>Kronis</h4><p class="text-xs text-gray-500">Dampak paparan berulang jangka panjang.</p></div>
+                                <div class="bg-white border border-blue-100 rounded-2xl p-4 shadow-sm"><h4 class="font-bold text-primary text-sm mb-1"><i class="fa-solid fa-capsules mr-2"></i>Oral</h4><p class="text-xs text-gray-500">Evaluasi melalui jalur pemberian oral.</p></div>
+                                <div class="bg-white border border-blue-100 rounded-2xl p-4 shadow-sm"><h4 class="font-bold text-primary text-sm mb-1"><i class="fa-solid fa-hand-dots mr-2"></i>Dermal</h4><p class="text-xs text-gray-500">Evaluasi efek paparan melalui kulit.</p></div>
+                                <div class="bg-white border border-blue-100 rounded-2xl p-4 shadow-sm"><h4 class="font-bold text-primary text-sm mb-1"><i class="fa-solid fa-lungs mr-2"></i>Inhalasi</h4><p class="text-xs text-gray-500">Evaluasi melalui saluran pernapasan.</p></div>
+                                <div class="bg-white border border-green-100 rounded-2xl p-4 shadow-sm"><h4 class="font-bold text-secondary text-sm mb-1"><i class="fa-solid fa-eye mr-2"></i>Iritasi</h4><p class="text-xs text-gray-500">Menilai potensi reaksi iritasi pada jaringan.</p></div>
+                                <div class="bg-white border border-green-100 rounded-2xl p-4 shadow-sm"><h4 class="font-bold text-secondary text-sm mb-1"><i class="fa-solid fa-shield-virus mr-2"></i>Sensitisasi</h4><p class="text-xs text-gray-500">Menilai potensi hipersensitivitas berulang.</p></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-6"><i class="fa-solid fa-sliders mr-2 text-accent"></i>Rancangan pengujian dapat disesuaikan dengan sampel, parameter, dan protokol yang disepakati.</p>
+                            <button type="button" onclick="requestService('Uji Toksisitas')" class="bg-secondary hover:bg-green-700 text-white px-8 py-3 rounded-xl font-medium transition-colors shadow-lg flex items-center gap-2 text-sm">Inquire About This Service <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                        <div class="lg:col-span-5">
+                            <div class="rounded-3xl overflow-hidden shadow-2xl relative h-[400px] bg-slate-100">
+                                <img src="https://raw.githubusercontent.com/handeyas/bonvitek/342dd82a0d20069695dea38827d55248ee10188e/Uji-Toksisitas.png" alt="Laboratorium uji toksisitas" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-gray-950/60 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-8">
+                                    <p class="text-white font-heading text-xl font-bold">Toxicity &amp; Safety Assessment</p>
+                                    <p class="text-white/80 text-sm mt-1">Pengujian laboratorium yang presisi dan terpercaya.</p>
                                 </div>
                             </div>
                         </div>
@@ -1033,6 +1091,24 @@
                         <h3 class="font-bold text-gray-900 text-lg mb-1">Kelinci</h3>
                         <p class="text-sm text-primary font-medium mb-3">New Zealand White</p>
                         <p class="text-xs text-gray-500 mt-auto bg-gray-50 py-1.5 rounded-full">Laboratory Animal</p>
+                    </div>
+                    <div class="bg-white rounded-3xl border border-gray-100 p-5 hover:shadow-lg transition-all group text-center flex flex-col">
+                        <div class="h-40 bg-red-50 rounded-2xl mb-5 flex items-center justify-center overflow-hidden"><img src="https://raw.githubusercontent.com/handeyas/bonvitek/342dd82a0d20069695dea38827d55248ee10188e/Foto-kecoa.jpeg" alt="Kecoa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Kecoa</h3>
+                        <p class="text-sm text-primary font-medium mb-3">Serangga Uji</p>
+                        <p class="text-xs text-gray-500 mt-auto bg-gray-50 py-1.5 rounded-full">Laboratory Test Animal</p>
+                    </div>
+                    <div class="bg-white rounded-3xl border border-gray-100 p-5 hover:shadow-lg transition-all group text-center flex flex-col">
+                        <div class="h-40 bg-sky-50 rounded-2xl mb-5 flex items-center justify-center overflow-hidden"><img src="https://raw.githubusercontent.com/handeyas/bonvitek/342dd82a0d20069695dea38827d55248ee10188e/Foto-nyamuk.jpeg" alt="Nyamuk" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Nyamuk</h3>
+                        <p class="text-sm text-primary font-medium mb-3">Serangga Uji</p>
+                        <p class="text-xs text-gray-500 mt-auto bg-gray-50 py-1.5 rounded-full">Laboratory Test Animal</p>
+                    </div>
+                    <div class="bg-white rounded-3xl border border-gray-100 p-5 hover:shadow-lg transition-all group text-center flex flex-col">
+                        <div class="h-40 bg-amber-50 rounded-2xl mb-5 flex items-center justify-center overflow-hidden"><img src="https://raw.githubusercontent.com/handeyas/bonvitek/342dd82a0d20069695dea38827d55248ee10188e/Foto-lalat.jpeg" alt="Lalat" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Lalat</h3>
+                        <p class="text-sm text-primary font-medium mb-3">Serangga Uji</p>
+                        <p class="text-xs text-gray-500 mt-auto bg-gray-50 py-1.5 rounded-full">Laboratory Test Animal</p>
                     </div>
                 </div>
             </div>
@@ -1255,6 +1331,7 @@
                                     <option value="Kimia Darah">Kimia Darah</option>
                                     <option value="Molecular Testing">Molecular Testing</option>
                                     <option value="Supply Hewan Uji">Supply Hewan Uji</option>
+                                    <option value="Uji Toksisitas">Uji Toksisitas</option>
                                     <option value="Layanan Lainnya">Layanan Lainnya</option>
                                 </select>
                                 <p id="error-wa-service" class="form-error hidden"></p>
@@ -1286,11 +1363,15 @@
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-10 h-10 rounded-full bg-green-50 text-secondary flex items-center justify-center shrink-0 text-lg"><i class="fa-brands fa-whatsapp"></i></div>
-                                <span class="pt-2 font-medium">+62 899-6666-647</span>
+                                <a href="https://wa.me/6285887045575" target="_blank" rel="noopener noreferrer" class="pt-2 font-medium hover:text-secondary">+62 858-8704-5575</a>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 text-lg"><i class="fa-solid fa-envelope"></i></div>
-                                <span class="pt-2 font-medium">bonvitekinovasi@gmail.com</span>
+                                <a href="mailto:bonvitekinovasi@gmail.com" class="pt-2 font-medium hover:text-accent">bonvitekinovasi@gmail.com</a>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-pink-50 text-pink-600 flex items-center justify-center shrink-0 text-lg"><i class="fa-brands fa-instagram"></i></div>
+                                <a href="https://instagram.com/bonvitek.labs" target="_blank" rel="noopener noreferrer" class="pt-2 font-medium hover:text-pink-600">@bonvitek.labs</a>
                             </div>
                         </div>
 
@@ -1356,7 +1437,7 @@
     <!-- Floating WhatsApp -->
     <div class="wa-float" aria-label="WhatsApp PT. Bonvitek Inovasi Indonesia">
         <span class="wa-tooltip">Chat with us</span>
-        <a href="https://wa.me/628996666647?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="wa-float-button" aria-label="Chat with us via WhatsApp">
+        <a href="https://wa.me/6285887045575?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="wa-float-button" aria-label="Chat with us via WhatsApp">
             <i class="fa-brands fa-whatsapp text-2xl"></i>
         </a>
     </div>
@@ -1367,8 +1448,8 @@
                 <!-- Brand -->
                 <div class="lg:col-span-2">
                     <div class="flex items-center gap-2 mb-6">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl">
-                            <i class="fa-solid fa-flask-vial"></i>
+                        <div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center p-1">
+                            <img src="https://raw.githubusercontent.com/handeyas/bonvitek/342dd82a0d20069695dea38827d55248ee10188e/logo%20bonvitek.png" alt="Logo Bonvitek" class="w-full h-full object-contain">
                         </div>
                         <div class="flex flex-col">
                             <span class="font-heading font-bold text-xl text-white leading-tight">BONVITEK</span>
@@ -1378,7 +1459,7 @@
                     <p class="text-sm text-gray-400 mb-6 max-w-sm leading-relaxed">
                         Providing trusted laboratory testing, research, and consulting services to support industry, academia, and society.
                     </p>
-                    <a href="https://wa.me/628996666647?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+                    <a href="https://wa.me/6285887045575?text=Halo%20PT.%20Bonvitek%20Inovasi%20Indonesia%2C%20saya%20ingin%20mendapatkan%20informasi%20mengenai%20layanan%20laboratorium." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all">
                         <i class="fa-brands fa-whatsapp"></i> Chat via WhatsApp
                     </a>
                 </div>
@@ -1403,6 +1484,7 @@
                         <li><a href="#services" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('kimiadarah'),100)" class="hover:text-secondary transition-colors">Kimia Darah</a></li>
                         <li><a href="#services" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('molecular'),100)" class="hover:text-secondary transition-colors">Molecular Testing</a></li>
                         <li><a href="#services" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('hewanuji'),100)" class="hover:text-secondary transition-colors">Supply Hewan Uji</a></li>
+                        <li><a href="#services" onclick="router.navigate('services'); setTimeout(()=>switchServiceTab('toksisitas'),100)" class="hover:text-secondary transition-colors">Uji Toksisitas</a></li>
                     </ul>
                 </div>
 
@@ -1416,11 +1498,15 @@
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-phone text-secondary"></i>
-                            <span class="text-gray-400">+62 899-6666-647</span>
+                            <a href="https://wa.me/6285887045575" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-secondary">+62 858-8704-5575</a>
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-envelope text-secondary"></i>
-                            <span class="text-gray-400">bonvitekinovasi@gmail.com</span>
+                            <a href="mailto:bonvitekinovasi@gmail.com" class="text-gray-400 hover:text-secondary">bonvitekinovasi@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-brands fa-instagram text-secondary"></i>
+                            <a href="https://instagram.com/bonvitek.labs" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-secondary">@bonvitek.labs</a>
                         </li>
                     </ul>
                 </div>
@@ -1469,7 +1555,7 @@
         };
 
         // WhatsApp contact flow
-        const BONVITEK_WHATSAPP = '628996666647';
+        const BONVITEK_WHATSAPP = '6285887045575';
         const DEFAULT_WA_MESSAGE = 'Halo PT. Bonvitek Inovasi Indonesia, saya ingin mendapatkan informasi mengenai layanan laboratorium.';
 
         function openBonvitekWhatsApp(message = DEFAULT_WA_MESSAGE) {
